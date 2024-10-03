@@ -2,32 +2,27 @@
 
 section .text
 global main
-main:
+main:                        
     mov rbp, rsp; for correct debugging
+
+    ; 메모리 <-> 레지스터
+    ; mov rax, a ; a라는 바구니의 주소값 rax에 복사
+    ; mov rax, [a] ; a라는 바구니 안에 있는 값을 rax에 복사
+    mov al, [a]
     
-    ; 8 bit = 1byte
-    ; 16 bit = 2byte = 1word
-    ; 32 bit = 4byte = 2word = 1dword (double-word)
-    ; 64 bit = 8byte = 4word = 1qword (quad-word)
-    
-    ;eax = 32bit 사용
-    ;rax = 64bit 사용
-    ;al = 1byte 사용
-    
-    mov eax, 0x1234
-    mov rbx, 0x12345678
+    mov [a], byte 0x55
+    mov [a], word 0x6666
     mov cl, 0xff
-    
-    mov al, 0x00 ; 원래 값에서 1byte만 바뀜
-    mov rax, rdx ; rdx값을 rax값에 넣음
-    
-    
+    mov [a], cl
+                        
     xor rax, rax
     ret
     
     ; 변수의 선언 및 사용
-    ; 변수는 그냥 데이터를 저장하는 바구니
+    ; 변수는 데이터를 저장하는 바구니
     ; - 처음에 바구니 사용하겠다 선언 (이름과 크기 지정)
+    
+    ; 메모리에는 구분할 수 있도록 주소(번지수)가 있다.
 
 ; 초기화 된 데이터
 ; [변수이름][크기][초기값]
@@ -43,6 +38,3 @@ section .data
 ; [크기] resb(1byte) resw(2byte) resd(4byte) resq(8byte)
 section .bss
     e resb 10
-
-
-
