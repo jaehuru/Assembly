@@ -3,7 +3,6 @@
 section .text
 global main
 main:
-    ;write your code here
     ;주석표시
     
     ;1bite = 1bit
