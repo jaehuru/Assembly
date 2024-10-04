@@ -1,0 +1,27 @@
+%include "io64.inc"
+
+section .text
+global main
+main:
+    mov rbp, rsp; for correct debugging
+
+    PRINT_STRING msg
+    
+    xor rax, rax
+    ret
+
+section .data
+    msg db 0x48,0x65,0x6c,0x6c,0x20,0x57,0x6f,0x72,0x6c,0x64,0x0
+    ; 'Hello World', 0x00
+    
+
+    ; a db 17   ; [0x11]
+    a db 0x11, 0x11, 0x11, 0x11
+
+    b dd 0x12345678
+    ; Little-Endian 0x78 0x56 0x34 0x12 거꾸로 저장
+    ; 장점 : 캐스팅에 유리
+    ; Big-Endian 0x12 0x34 0x56 0x78
+    ; 장점 : 숫자 비교에 유리
+section .bss
+    
